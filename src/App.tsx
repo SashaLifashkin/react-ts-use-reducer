@@ -2,8 +2,8 @@ import { useReducer } from 'react';
 import './App.css';
 import { Footer } from './components/Footer';
 
-const reducer = (count: number, actions: string) => {
-    switch (actions) {
+const reducer = (count: number, action: { type: string }) => {
+    switch (action.type) {
         case 'increase':
             return count + 1;
         case 'decrease':
@@ -16,8 +16,8 @@ const reducer = (count: number, actions: string) => {
 function App() {
     const [count, dispatch] = useReducer(reducer, 0);
 
-    const increase = () => dispatch('increase');
-    const decrease = () => dispatch('decrease');
+    const increase = () => dispatch({ type: 'increase' });
+    const decrease = () => dispatch({ type: 'decrease' });
 
     return (
         <div className="App">
