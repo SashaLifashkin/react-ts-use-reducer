@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import './App.css';
 import { Footer } from './components/Footer';
 
@@ -14,10 +14,10 @@ const reducer = (count: number, actions: string) => {
 };
 
 function App() {
-    const [count, setCount] = useState(0);
+    const [count, dispatch] = useReducer(reducer, 0);
 
-    const increase = () => setCount(count + 1);
-    const decrease = () => setCount(count - 1);
+    const increase = () => dispatch('increase');
+    const decrease = () => dispatch('decrease');
 
     return (
         <div className="App">
