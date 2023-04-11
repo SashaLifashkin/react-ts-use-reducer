@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import { Footer } from './components/Footer';
+
+const reducer = (count: number, actions: string) => {
+    switch (actions) {
+        case 'increase':
+            return count + 1;
+        case 'decrease':
+            return count - 1;
+        default:
+            return count;
+    }
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [count, setCount] = useState(0);
+
+    const increase = () => setCount(count + 1);
+    const decrease = () => setCount(count - 1);
+
+    return (
+        <div className="App">
+            <header className="header">
+                Some page
+            </header>
+            <main>
+                <button
+                    type="button"
+                    onClick={decrease}
+                >
+                    -
+                </button>
+                {count}
+                <button
+                    type="button"
+                    onClick={increase}
+                >
+                    +
+                </button>
+            </main>
+            <footer>
+                <Footer />
+            </footer>
+        </div>
+    );
 }
 
 export default App;
