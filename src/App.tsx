@@ -1,31 +1,11 @@
-import { useReducer } from 'react';
+import { useContext } from 'react';
 import './App.css';
 import { Footer } from './components/Footer';
-
-const reducer = (state: { count: number, lang: string }, action: { type: string }) => {
-    switch (action.type) {
-        case 'increase':
-            return {
-                ...state,
-                count: state.count + 1,
-            };
-        case 'decrease':
-            return {
-                ...state,
-                count: state.count - 1,
-            };;
-        default:
-            return state;
-    }
-};
-
-const initialState = {
-    count: 0,
-    lang: 'eu',
-};
+import { DispatchContext, StateContext } from './components/StateContext';
 
 function App() {
-    const [{ count }, dispatch] = useReducer(reducer, initialState);
+    const dispatch = useContext(DispatchContext);
+    const { count } = useContext(StateContext);
 
     const increase = () => dispatch({ type: 'increase' });
     const decrease = () => dispatch({ type: 'decrease' });
